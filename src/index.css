@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --lc-background: #f9f9f9;
+    --lc-surface: #f9f9f9;
+    --lc-surface-variant: #e2e2e2;
+    --lc-surface-container-lowest: #ffffff;
+    --lc-surface-container-low: #f3f3f3;
+    --lc-surface-container: #eeeeee;
+    --lc-surface-container-high: #e8e8e8;
+    --lc-surface-container-highest: #e2e2e2;
+    --lc-primary: #000000;
+    --lc-on-primary: #ffffff;
+    --lc-on-surface: #1b1b1b;
+    --lc-on-surface-variant: #4c4546;
+    --lc-outline: #7e7576;
+    --lc-outline-variant: #cfc4c5;
+    --lc-code-keyword: #7c3aed;
+    --lc-code-comment: #6b7280;
+    --lc-code-fg: #1b1b1b;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+}
+
+/* Landing page — Quiet IDE theme */
+.landing {
+  background-color: var(--lc-background);
+  color: var(--lc-on-surface);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.landing.dark {
+  --lc-background: #0f0f0f;
+  --lc-surface: #0f0f0f;
+  --lc-surface-variant: #2a2a2a;
+  --lc-surface-container-lowest: #161616;
+  --lc-surface-container-low: #1c1c1c;
+  --lc-surface-container: #222222;
+  --lc-surface-container-high: #2a2a2a;
+  --lc-surface-container-highest: #333333;
+  --lc-primary: #f5f5f5;
+  --lc-on-primary: #0f0f0f;
+  --lc-on-surface: #f1f1f1;
+  --lc-on-surface-variant: #a3a3a3;
+  --lc-outline: #8a8a8a;
+  --lc-outline-variant: #3a3a3a;
+  --lc-code-keyword: #c4b5fd;
+  --lc-code-comment: #737373;
+  --lc-code-fg: #e5e5e5;
+}
+
+.landing h1,
+.landing h2,
+.landing h3 {
+  font-size: unset;
+  line-height: unset;
+}
+
+.landing ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.landing ::-webkit-scrollbar-track {
+  background: var(--lc-surface-container-low);
+}
+
+.landing ::-webkit-scrollbar-thumb {
+  background: var(--lc-primary);
+  border-radius: 0;
+}
+
+
+/* === Particle Background === */
+.particle {
+  position: fixed;
+  pointer-events: none;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--lc-primary);
+  opacity: 0.06;
+  z-index: 0;
+  animation: particle-float var(--duration, 15s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  font-size: var(--size, 20px);
+  left: var(--x, 50%);
+}
+
+/* === Glowing Gradient Orbs === */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+.glow-orb-1 { width: 400px; height: 400px; background: linear-gradient(135deg, #7c3aed, #2563eb); top: 10%; left: 10%; }
+.glow-orb-2 { width: 300px; height: 300px; background: linear-gradient(135deg, #10b981, #06b6d4); top: 60%; right: 10%; animation-delay: 2s; }
+.glow-orb-3 { width: 250px; height: 250px; background: linear-gradient(135deg, #f59e0b, #ef4444); bottom: 10%; left: 40%; animation-delay: 4s; }
+
+.landing.dark .glow-orb { opacity: 0.08; }
+
+/* === Typing Animation === */
+.typing-container {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--lc-primary);
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* === Scroll Reveal === */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === XP Bar === */
+.xp-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #10b981, #06b6d4, #7c3aed);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+  transition: width 1s ease-out;
+}
+
+/* === Achievement Popup === */
+.achievement-popup {
+  animation: bounce-in 0.6s ease-out both;
+}
+
+/* === Streak Fire === */
+.streak-fire {
+  display: inline-block;
+  animation: streak-fire 0.5s ease-in-out;
+}
+
+/* === Glass Effect === */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.landing.dark .glass {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* === Gradient Text === */
+.gradient-text {
+  background: linear-gradient(135deg, #7c3aed, #2563eb, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === Card Hover Effects === */
+.card-3d {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+.card-3d:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
+/* === Heatmap === */
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+.heatmap-cell:hover {
+  transform: scale(1.5);
+}
+
+/* === Chat Bubbles === */
+.chat-bubble-ai {
+  background: linear-gradient(135deg, #1e293b, #334155);
+  border-radius: 18px 18px 18px 4px;
+}
+.chat-bubble-user {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  border-radius: 18px 18px 4px 18px;
+}
+
+.landing.dark .chat-bubble-ai {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+
+/* === Problem Type Badges === */
+.badge-mcq { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; }
+.badge-debug { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+.badge-golf { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+.badge-speed { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+
+/* === Confetti === */
+.confetti-piece {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confetti 1s ease-out forwards;
+}
